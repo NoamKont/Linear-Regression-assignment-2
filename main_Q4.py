@@ -10,3 +10,4 @@ if __name__ == "__main__":
     linear_regression.fit(data_train, target_train)
     score = linear_regression.score(data_test, target_test)
     print(score)
+    print("the weights are: ", linear_regression.weights_[1:], "the b is:", linear_regression.weights_[0])
