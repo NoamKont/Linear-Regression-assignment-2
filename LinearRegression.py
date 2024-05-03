@@ -19,10 +19,22 @@ class LinearRegression:
         self.weights_ = X_tX_inv@X_t@y
 
     def predict(self, X, add_bias=True):
-        if add_bias:  # if we already add bias in the fit function we don't need to add another '1' column
+        if add_bias:  # if we already add bias in the other function we don't need to add another '1' column
             ones_column = np.ones((X.shape[0], 1), dtype=X.dtype)
             X = np.hstack((ones_column, X))
-
         results = np.array(np.transpose(X@self.weights_))
         return results
 
+    def score(self, X, y):
+        u = np.sum(((y - self.predict(X))**2))
+        v = np.sum((y-np.mean(y))**2)
+        return 1-(u / v)
+    @staticmethod
+    def train_test_split(X, y, train_size=0.8):
+        train_part = int(X.shape[0] * train_size)
+
+        X_train = X[:train_part].values
+        X_test = X[train_part:].values
+        y_train = y[:train_part].values
+        y_test = y[train_part:].values
+        return X_train, X_test, y_train, y_test
