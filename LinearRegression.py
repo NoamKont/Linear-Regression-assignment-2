@@ -22,7 +22,8 @@ class LinearRegression:
         if add_bias:  # if we already add bias in the other function we don't need to add another '1' column
             ones_column = np.ones((X.shape[0], 1), dtype=X.dtype)
             X = np.hstack((ones_column, X))
-        results = np.array(np.transpose(X@self.weights_))
+        results = np.array(X@self.weights_)
+        #results = np.array(np.transpose(X@self.weights_))
         return results
 
     def score(self, X, y):
