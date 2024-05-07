@@ -29,25 +29,19 @@ if __name__ == "__main__":
         result.append([i, (1 - test_score) * 100, (1 - train_score) * 100])
 
     df = pd.DataFrame(result, columns=['poly', 'test error', 'train error'])
-    # Plotting
-    fig, ax = plt.subplots()
-    bar_width = 0.35
-    bar_poly = df['poly']
-    bar_test_error = df['test error']
-    bar_train_error = df['train error']
-    index = range(len(bar_poly))
 
-    bars1 = ax.bar(index, bar_test_error, bar_width, label='Test Error')
-    bars2 = ax.bar([i + bar_width for i in index], bar_train_error, bar_width, label='Train Error')
+    # Plotting
+    plt.bar(df['poly'] - 0.2, df['test error'], width=0.4, label='Test Error')
+    plt.bar(df['poly'] + 0.2, df['train error'], width=0.4, label='Train Error')
 
     # Adding labels and title
-    ax.set_xlabel('Polynomial Degree')
-    ax.set_ylabel('Error Percentage')
-    ax.set_xticks([i + bar_width / 2 for i in index])
-    ax.set_xticklabels(bar_poly)
-    ax.legend()
+    plt.xlabel('Polynomial Degree')
+    plt.ylabel('Error Percentage')
+    plt.xticks(df['poly'])
+    plt.legend()
 
     # Displaying the plot
     plt.show()
+
 
 
