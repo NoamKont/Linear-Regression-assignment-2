@@ -2,6 +2,7 @@ import pandas as pd
 from LinearRegression import LinearRegression
 import json
 from sklearn.datasets import fetch_california_housing
+from sklearn.preprocessing import PolynomialFeatures
 
 if __name__ == "__main__":
     housing = fetch_california_housing(as_frame=True)  # importing the house price as data frame

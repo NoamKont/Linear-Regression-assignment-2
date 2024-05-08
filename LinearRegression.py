@@ -1,5 +1,4 @@
 import numpy as np
-import sympy as sp
 
 class LinearRegression:
     def __init__(self):
@@ -23,7 +22,6 @@ class LinearRegression:
             ones_column = np.ones((X.shape[0], 1), dtype=X.dtype)
             X = np.hstack((ones_column, X))
         results = np.array(X@self.weights_)
-        #results = np.array(np.transpose(X@self.weights_))
         return results
 
     def score(self, X, y):
