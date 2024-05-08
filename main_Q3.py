@@ -4,9 +4,8 @@ import numpy as np
 import pandas as pd
 
 if __name__ == "__main__":
-    with open('config.json', 'r', encoding='utf8') as json_file:
-        config = json.load(json_file)
-    df = pd.read_csv(config['data_file'])
+    with open("..\simple_regression.csv") as file:
+        df = pd.read_csv(file)
     X = df.drop('y', axis=1)  # Drop the "y" column from features
     y = df['y']
 

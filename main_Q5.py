@@ -7,9 +7,8 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == "__main__":
-    with open('config_q5.json', 'r', encoding='utf8') as json_file:
-        config = json.load(json_file)
-    df = pd.read_csv(config['data_file'])
+    with open("..\Students_on_Mars.csv") as file:
+        df = pd.read_csv(file)
 
     X = df.drop('y', axis=1)  # Drop the diagnosis column from features
     y = df['y']
