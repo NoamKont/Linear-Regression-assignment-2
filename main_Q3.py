@@ -11,7 +11,7 @@ if __name__ == "__main__":
     y = df['y']
 
     linear_regression = LinearRegression()
-
+    df = df.sample(frac=1).reset_index(drop=True)  # shuffle the data frame
     X_train, X_test, y_train, y_test = LinearRegression.train_test_split(X, y)  # split the dataset
 
     linear_regression.fit(X_train, y_train)
