@@ -13,11 +13,11 @@ if __name__ == "__main__":
 
     X = df.drop('y', axis=1)  # Drop the diagnosis column from features
     y = df['y']
-
+    df = df.sample(frac=1).reset_index(drop=True)  # shuffle the data frame
     X_train, X_test, y_train, y_test = LinearRegression.train_test_split(X, y)  # split the dataset
     result = []
 
-    for i in range(1, 4):
+    for i in range(1, 6):
         linear_model = LinearRegression()
         poly = PolynomialFeatures(i, include_bias=False)
         X_train_poly = poly.fit_transform(X_train)
@@ -29,7 +29,7 @@ if __name__ == "__main__":
         result.append([i, (1 - test_score) * 100, (1 - train_score) * 100])
 
     df = pd.DataFrame(result, columns=['poly', 'test error', 'train error'])
-
+    
     # Plotting
     plt.bar(df['poly'] - 0.2, df['test error'], width=0.4, label='Test Error')
     plt.bar(df['poly'] + 0.2, df['train error'], width=0.4, label='Train Error')
@@ -42,6 +42,5 @@ if __name__ == "__main__":
 
     # Displaying the plot
     plt.show()
-
 
 
