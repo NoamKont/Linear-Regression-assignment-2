@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import PolynomialFeatures
 from LinearRegression import LinearRegression
-import json
 import matplotlib.pyplot as plt
 
 
@@ -16,16 +15,19 @@ if __name__ == "__main__":
     X_train, X_test, y_train, y_test = LinearRegression.train_test_split(X, y)  # split the dataset
     result = []
 
-    for i in range(1, 6):
+    for i in range(1, 6):  # Iterate over polynomial degrees from 1 to 5
         linear_model = LinearRegression()
         poly = PolynomialFeatures(i, include_bias=False)
-        X_train_poly = poly.fit_transform(X_train)
 
+        X_train_poly = poly.fit_transform(X_train)  # Transform the training data to include polynomial features
         linear_model.fit(X_train_poly, y_train)
-        X_test_poly = poly.fit_transform(X_test)
+
+        X_test_poly = poly.fit_transform(X_test)  # Transform the test data to include polynomial features
+
         train_score = linear_model.score(X_train_poly, y_train)
         test_score = linear_model.score(X_test_poly, y_test)
-        result.append([i, (1 - test_score) * 100, (1 - train_score) * 100])
+
+        result.append([i, (1 - test_score) * 100, (1 - train_score) * 100])  # Append the results to the result list as error percentage
 
     df = pd.DataFrame(result, columns=['poly', 'test error', 'train error'])
     

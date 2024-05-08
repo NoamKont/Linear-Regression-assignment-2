@@ -1,4 +1,3 @@
-import json
 from LinearRegression import LinearRegression
 import numpy as np
 import pandas as pd
